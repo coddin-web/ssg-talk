@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-undef
 module.exports = {
   env: {
-    browser: true,
+    node: true,
     es2021: true,
   },
   extends: ['eslint:recommended', 'plugin:react/recommended'],
@@ -11,5 +11,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react'],
-  rules: {},
+  rules: {
+    'react/prop-types': 'off',
+  },
 };

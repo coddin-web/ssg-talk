@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import PageTitle from '@/components/PageTitle';
+import ReactMarkdown from 'react-markdown';
 
 export async function getStaticProps(context) {
   return {
@@ -16,15 +18,33 @@ export async function getStaticPaths() {
   };
 }
 
-Article.propTypes = {
-  slug: String,
-};
-
 export default function Article({ slug }) {
   return (
     <div>
-      <Link href="/">Back</Link>
-      <h1 className="text-3xl text-center p-20">{slug}</h1>
+      <Link className="p-4 inline-block" href="/">
+        ← Terug naar homepage
+      </Link>
+      {PageTitle(slug)}
+      <div className="relative px-6 lg:px-8 py-16">
+        <div className="mx-auto max-w-prose text-lg">
+          <div className="prose prose-lg prose-indigo mx-auto mt-6 text-gray-500">
+            <ReactMarkdown>
+              {`
+## Test
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+1. Test
+2. Test
+3. Test
+
+\`\`\`js
+const test = 'test';
+\`\`\`
+
+              `}
+            </ReactMarkdown>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
