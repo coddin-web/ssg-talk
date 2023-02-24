@@ -1,7 +1,7 @@
+import React from 'react';
 import Head from 'next/head';
 import PageTitle from '@/components/PageTitle';
 import ArticleOverview from '@/components/ArticleOverview';
-import directus from '@/helpers/directus';
 
 export async function getStaticProps() {
   const posts = await fetch('https://joz2kqj5.directus.app/items/articles?fields[]=*&fields[]=catgory.name').then(
@@ -16,8 +16,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({ posts }) {
-  console.log();
-
   return (
     <>
       <Head>

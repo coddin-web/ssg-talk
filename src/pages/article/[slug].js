@@ -12,9 +12,13 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
+  const posts = await fetch('https://joz2kqj5.directus.app/items/articles?fields[]=*&fields[]=catgory.name').then(
+    (res) => res.json()
+  );
+
   return {
-    paths: [{ params: { slug: 'test' } }, { params: { slug: 'test-2' } }, { params: { slug: 'test-3' } }],
-    fallback: true,
+    paths: posts.data.map((post) => ({ params: { slug: post.uuid } })),
+    fallback: false,
   };
 }
 
